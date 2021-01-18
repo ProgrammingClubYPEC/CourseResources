@@ -21,5 +21,16 @@ namespace NUnitTestHelloWorld
                 Assert.AreEqual(sw.ToString(), "Hello World!\r\n");
             }
         }
+
+        [Test]
+        public void TestFalseOutputMainMethood()
+        {
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                Program.Main(null);
+                Assert.IsTrue(sw.ToString().Equals("Hello World!\r\n"));
+            }
+        }
     }
 }
