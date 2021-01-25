@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 1)Компьютер загадывает четырехзначное число (без повторений цифр). +
 
-2)Пользователь вводит число: 
+2)Пользователь вводит число:+
 2.1)если совпадает какая-то цифра и ее позиция, программа выводит слово БЫК и цифру. 
 2.2)Если цифра есть, но позиция ее не верная, то пишет слово КОРОВА и цифру. 
 
@@ -24,9 +24,13 @@ namespace GameOFBullsAndCows
         static void Main(string[] args)
         {
             int[] RandomArray = new int[4];
+            string UserInput;
+
             RandomArray = GetRandomArray(RandomArray);
+            UserInput = GetUserInput();
 
 
+            Console.ReadKey();
         }
 
         static int[] GetRandomArray(int[] array)
@@ -44,6 +48,20 @@ namespace GameOFBullsAndCows
             }
 
             return array;
+        }
+
+        static string GetUserInput()
+        {
+            Console.WriteLine("Игра БЫКИ и КОРОВЫ\nВведите четырехзначное число");
+            string input = Console.ReadLine();
+
+            while(input.Length != 4)
+            {
+                Console.WriteLine("Число должно быть четырехзначным!!!\nВведите снова четырехзначное число");
+                input = Console.ReadLine();
+            }
+
+            return input;
         }
     }
 }
