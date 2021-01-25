@@ -28,30 +28,29 @@ namespace GameOFBullsAndCows
 
             RandomArray = GetRandomArray(RandomArray);
             UserInput = GetUserInput();
-            
-            if(CurrentUserInput(UserInput))
+
+            if (CurrentUserInput(UserInput))
             {
                 CheckBulls(RandomArray, UserInput);
                 CheckCows(RandomArray, UserInput);
             }
+            else
+                Console.WriteLine("Введено не корректное четырехзначное число");
 
             Console.ReadKey();
         }
 
         static bool CurrentUserInput(string input)
         {
-            char[] numbers = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-
             // проверка на числа
-            foreach(char item in input)
-                foreach(char numb in numbers)
-                    if (item != numb)
-                        return false;
+            for (int index = 0; index < input.Length; index += 1)
+                if (!char.IsDigit(input[index]))
+                    return false;
 
             // проверка повторимость
             for(int index = 0; index < input.Length - 1; index += 1)
                 for(int next = index + 1; next < input.Length; next += 1)
-                    if (input[index] != input[next])
+                    if (input[index].Equals(input[next]))
                         return false;
 
             return true;
@@ -59,7 +58,7 @@ namespace GameOFBullsAndCows
 
         static int[] GetRandomArray(int[] array)
         {
-            Random rand = new Random((int)DateTime.Now.Ticks);
+            Random rand = new Random();
             array[0] = rand.Next(0, 10);
 
             for (int index = 1, next = rand.Next(0, 10); index < array.Length; next = rand.Next(0, 10))
