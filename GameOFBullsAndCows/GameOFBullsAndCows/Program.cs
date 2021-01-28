@@ -30,14 +30,14 @@ namespace GameOFBullsAndCows
             // data[0] = количеству символов в рандомном массиве
             // data[1] = количеству попыток
 
-            DataForDifficult = ChoiceOfDifficulty();
+            ChoiceOfDifficulty(ref DataForDifficult);
             int[] RandomArray = new int[DataForDifficult[0]];
             int Attempt = DataForDifficult[1];
 
-            RandomArray = GetRandomArray(RandomArray);
+            GetRandomArray(ref RandomArray);
             while(Attempt != 0)
             {
-                UserInput = GetUserInput(DataForDifficult[0]);
+                GetUserInput(DataForDifficult[0], out UserInput);
 
                 if (CurrentUserInput(UserInput))
                 {
@@ -63,7 +63,7 @@ namespace GameOFBullsAndCows
             Console.ReadKey();
         }
 
-        private static bool ArrayEqualsInput(int[] randArr, string input)
+        private static bool ArrayEqualsInput(in int[] randArr, in string input)
         {
             for (int index = 0; index < input.Length; index += 1)
             {
@@ -74,7 +74,7 @@ namespace GameOFBullsAndCows
             return true;
         }
 
-        static bool CurrentUserInput(string input)
+        static bool CurrentUserInput(in string input)
         {
             // проверка на числа
             for (int index = 0; index < input.Length; index += 1)
@@ -90,9 +90,8 @@ namespace GameOFBullsAndCows
             return true;
         }
 
-        static int[] ChoiceOfDifficulty()
+        static void ChoiceOfDifficulty(ref int[] data)
         {
-            int[] data = new int[2];
             int answer = 0;
 
             Console.WriteLine("Игра БЫКИ и КОРОВЫ\nВыберите уровень сложности:");
@@ -118,42 +117,36 @@ namespace GameOFBullsAndCows
                     data[1] = 3;
                     break;
             }
-
-            return data;
         }
 
-        static int[] GetRandomArray(int[] array)
+        static void GetRandomArray(ref int[] array)
         {
             Random rand = new Random();
             array[0] = rand.Next(0, 10);
 
             for (int index = 1, next = rand.Next(0, 10); index < array.Length; next = rand.Next(0, 10))
             {
-                if(array[index - 1] != next)
+                if(!array.Contains(next))
                 {
                     array[index] = next;
                     index += 1;
                 }
             }
-
-            return array;
         }
 
-        static string GetUserInput(int size)
+        static void GetUserInput(in int size, out string input)
         {
             Console.WriteLine("\nВведите n-значное число");
-            string input = Console.ReadLine();
+            input = Console.ReadLine();
 
             while(input.Length != size)
             {
                 Console.WriteLine("Число должно быть n-значным!!!\nВведите снова n-значное число");
                 input = Console.ReadLine();
             }
-
-            return input;
         }
 
-        static void CheckBulls(int[] randArr, string input)
+        static void CheckBulls(in int[] randArr, in string input)
         {
             for(int index = 0; index < input.Length; index += 1)
             {
@@ -162,12 +155,12 @@ namespace GameOFBullsAndCows
             }
         }
 
-        static void CheckCows(int[] randArr, string input)
+        static void CheckCows(in int[] randArr, in string input)
         {
             for (int indexB = 0; indexB < input.Length; indexB += 1)
                 for (int indexA = 0; indexA < randArr.Length; indexA += 1)
                 {
-                    if (randArr[indexA] == (Convert.ToInt32(input[indexB]) - 48))
+                    if ((indexA != indexB) && (randArr[indexA] == (Convert.ToInt32(input[indexB]) - 48)))
                         Console.WriteLine($"КОРОВА {randArr[indexA]}");
                 }
         }
