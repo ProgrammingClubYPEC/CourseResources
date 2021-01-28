@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 2.1)если совпадает какая-то цифра и ее позиция, программа выводит слово БЫК и цифру. +
 2.2)Если цифра есть, но позиция ее не верная, то пишет слово КОРОВА и цифру. +
 
-3)Параллельно с каждым вводом пользователя числа, программа уменьшает счетчик попыток на 1.
+3)Параллельно с каждым вводом пользователя числа, программа уменьшает счетчик попыток на 1.+
 */
 
 
@@ -29,20 +29,34 @@ namespace GameOFBullsAndCows
             int[] DataForDifficult = new int[2];
 
             DataForDifficult = ChoiceOfDifficulty();
-
+            
             int[] RandomArray = new int[DataForDifficult[0]];
             int Attempt = DataForDifficult[1];
 
             RandomArray = GetRandomArray(RandomArray);
-            UserInput = GetUserInput(DataForDifficult[0]);
-
-            if (CurrentUserInput(UserInput))
+            while(Attempt != 0)
             {
-                CheckBulls(RandomArray, UserInput);
-                CheckCows(RandomArray, UserInput);
+                UserInput = GetUserInput(DataForDifficult[0]);
+
+                if (CurrentUserInput(UserInput))
+                {
+                    CheckBulls(RandomArray, UserInput);
+                    CheckCows(RandomArray, UserInput);
+                }
+                else
+                    Console.WriteLine("Введено не корректное число");
+
+                if(ArrayEqualsInput(RandomArray, UserInput))
+                {
+                    Console.WriteLine("\nКрасавчик, уважуха\n");
+                    Attempt = 0;
+                }
+                else
+                {
+                    Console.WriteLine("\nПоднатужься, разочаровываешь меня((");
+                    Attempt -= 1;
+                }
             }
-            else
-                Console.WriteLine("Введено не корректное число");
 
             Console.ReadKey();
         }
@@ -98,9 +112,20 @@ namespace GameOFBullsAndCows
             return true;
         }
 
+        static bool ArrayEqualsInput(int[] randArr, string input)
+        {
+            for (int index = 0; index < input.Length; index += 1)
+            {
+                if (randArr[index] != (Convert.ToInt32(input[index]) - 48))
+                    return false;
+            }
+
+            return true;
+        }
+
         static int[] GetRandomArray(int[] array)
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
             array[0] = rand.Next(0, 10);
 
             for (int index = 1, next = rand.Next(0, 10); index < array.Length; next = rand.Next(0, 10))
@@ -117,12 +142,12 @@ namespace GameOFBullsAndCows
 
         static string GetUserInput(int size)
         {
-            Console.WriteLine("\nВведите четырехзначное число");
+            Console.WriteLine("\nВведите число");
             string input = Console.ReadLine();
 
             while(input.Length != size)
             {
-                Console.WriteLine("Число должно быть четырехзначным!!!\nВведите снова четырехзначное число");
+                Console.WriteLine("Число должно быть n-значным!!!\nВведите снова n-значное число");
                 input = Console.ReadLine();
             }
 
