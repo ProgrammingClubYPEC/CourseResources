@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 2.1)если совпадает какая-то цифра и ее позиция, программа выводит слово БЫК и цифру. +
 2.2)Если цифра есть, но позиция ее не верная, то пишет слово КОРОВА и цифру. +
 
-3)Параллельно с каждым вводом пользователя числа, программа уменьшает счетчик попыток на 1.
+3)Параллельно с каждым вводом пользователя числа, программа уменьшает счетчик попыток на 1.+
 */
 
 
@@ -35,19 +35,43 @@ namespace GameOFBullsAndCows
             int Attempt = DataForDifficult[1];
 
             RandomArray = GetRandomArray(RandomArray);
-
-
-            UserInput = GetUserInput(DataForDifficult[0]);
-
-            if (CurrentUserInput(UserInput))
+            while(Attempt != 0)
             {
-                CheckBulls(RandomArray, UserInput);
-                CheckCows(RandomArray, UserInput);
+                UserInput = GetUserInput(DataForDifficult[0]);
+
+                if (CurrentUserInput(UserInput))
+                {
+                    CheckBulls(RandomArray, UserInput);
+                    CheckCows(RandomArray, UserInput);
+
+                    if (ArrayEqualsInput(RandomArray, UserInput))
+                    {
+                        Console.WriteLine("Ебать красава, уважуха!");
+                        Attempt = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Поднатужься челик, осталось немного!");
+                        Attempt -= 1;
+                    }
+                }
+                else
+                    Console.WriteLine("Всведено не корректное n-значное чило");
             }
-            else
-                Console.WriteLine("Введено не корректное n-значное число");
+
 
             Console.ReadKey();
+        }
+
+        private static bool ArrayEqualsInput(int[] randArr, string input)
+        {
+            for (int index = 0; index < input.Length; index += 1)
+            {
+                if (randArr[index] != (Convert.ToInt32(input[index]) - 48))
+                    return false;
+            }
+
+            return true;
         }
 
         static bool CurrentUserInput(string input)
