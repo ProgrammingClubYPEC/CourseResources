@@ -23,4 +23,13 @@ namespace BackspacesInString
         {
         }
     }
+
+    public class Solution
+    {
+        public static string CleanString(string str)
+        {
+            return "";
+        }
+
+    }   
 }
