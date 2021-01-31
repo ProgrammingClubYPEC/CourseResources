@@ -1,22 +1,18 @@
-using BackspacesInString;
 using NUnit.Framework;
 
 namespace TestCase
 {
-    public class Tests4Backspaces
+    public class Tests
     {
-        [Test]
-        public void SimpleTests()
+        [SetUp]
+        public void Setup()
         {
-            Assert.AreEqual("ac", Solution.CleanString("abc#d##c"));
-            Assert.AreEqual("", Solution.CleanString("abc##d######"));
         }
 
         [Test]
-        public void ExtremeTests()
+        public void Test1()
         {
-            Assert.AreEqual("", Solution.CleanString("#######"));
-            Assert.AreEqual("", Solution.CleanString(""));
+            Assert.Pass();
         }
     }
 }
