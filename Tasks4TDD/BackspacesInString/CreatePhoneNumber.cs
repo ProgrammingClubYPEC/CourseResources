@@ -18,7 +18,7 @@ namespace BackspacesInString
     {
         public static string ConvertToPhoneNumber(int[] numbers)
         {
-            return "";
+            return long.Parse(string.Concat(numbers)).ToString("(000) 000-0000");
         }
     }
 }
