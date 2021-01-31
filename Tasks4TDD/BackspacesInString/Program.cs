@@ -21,6 +21,16 @@ namespace BackspacesInString
     {
         static void Main(string[] args)
         {
+
         }
+    }
+
+    public class Solution
+    {
+        public static string CleanString(string str)
+        {
+            return "";
+        }
+        
     }
 }
