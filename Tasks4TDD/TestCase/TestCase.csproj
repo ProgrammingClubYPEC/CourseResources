@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankCalculationSystem\BankCalculationSystem.csproj" />
+    <ProjectReference Include="..\BackspacesInString\BackspacesInString.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3EDEDAEB-61E1-4DDE-A044-175CA7110D08}</ProjectGuid>
+    <ProjectGuid>{6708175D-6963-4D8C-8472-A2291B8751D0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>BankCalculationSystem</RootNamespace>
-    <AssemblyName>BankCalculationSystem</AssemblyName>
+    <RootNamespace>BackspacesInString</RootNamespace>
+    <AssemblyName>BackspacesInString</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

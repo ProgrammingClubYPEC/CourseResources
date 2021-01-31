@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("BankCalculationSystem")]
+[assembly: AssemblyTitle("BackspacesInString")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BankCalculationSystem")]
+[assembly: AssemblyProduct("BackspacesInString")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("3ededaeb-61e1-4dde-a044-175ca7110d08")]
+[assembly: Guid("6708175d-6963-4d8c-8472-a2291b8751d0")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
