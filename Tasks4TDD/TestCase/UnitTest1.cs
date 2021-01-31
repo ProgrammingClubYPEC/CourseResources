@@ -128,6 +128,41 @@ namespace TestCase
                 Assert.AreEqual(exp, SimpleTimeDifferrence.MaximunTimeInterval(res));
             }
         }
+    }
+
+    public class Tests4PhoneNumber
+    {
+        [Test]
+        public void SimpleTests()
+        {
+            Assert.AreEqual("(123) 456-7890", CreatePhoneNumber.ConvertToPhoneNumber(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }));
+            Assert.AreEqual("(111) 111-1111", CreatePhoneNumber.ConvertToPhoneNumber(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }));
+        }
+
+        private static string Solve(int[] numbers)
+        {
+            string result = "";
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (i == 0) result += "(";
+                result += numbers[i];
+                if (i == 2) result += ") ";
+                if (i == 5) result += "-";
+            }
+            return result;
+        }
+
+        [Test]
+        public static void RandomTest([Random(0, 9, 50)] int num)
+        {
+            List<int> list = new List<int>();
+            Random r = new Random();
+            for (int i = 0; i < 10; i++) 
+                list.Add(r.Next(10));
+            int[] numbers = list.ToArray();
+            Assert.AreEqual(Solve(numbers), CreatePhoneNumber.ConvertToPhoneNumber(numbers));
+        }
+
 
 
     }
